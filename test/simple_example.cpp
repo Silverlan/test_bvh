@@ -7,6 +7,7 @@
 #include <bvh/v2/executor.h>
 #include <bvh/v2/stack.h>
 #include <bvh/v2/tri.h>
+#include <ranges>
 
 #include <iostream>
 
@@ -37,8 +38,6 @@ int main() {
     bvh::v2::ThreadPool thread_pool;
     bvh::v2::ParallelExecutor executor(thread_pool);
 
-    test_error();
-
     // Get triangle centers and bounding boxes (required for BVH builder)
     std::vector<BBox> bboxes(tris.size());
     std::vector<Vec3> centers(tris.size());
@@ -52,6 +51,10 @@ int main() {
     typename bvh::v2::DefaultBuilder<Node>::Config config;
     config.quality = bvh::v2::DefaultBuilder<Node>::Quality::High;
     auto bvh = bvh::v2::DefaultBuilder<Node>::build(thread_pool, bboxes, centers, config);
+
+    for(auto &node : std::ranges::reverse_view {bvh.nodes}) {
+
+    }
 
     // Permuting the primitive data allows to remove indirections during traversal, which makes it faster.
     static constexpr bool should_permute = true;
