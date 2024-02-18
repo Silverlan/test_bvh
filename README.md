@@ -21,6 +21,7 @@ Here is a comparison of this library with other alternatives
 
 ![Performance comparison with Embree, nanort, and Fast-BVH](chart.png)
 
+
 ## Features
 
 Here is a list of features supported by this library (changes from `v1` are indicated with [NEW]):
