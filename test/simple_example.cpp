@@ -37,6 +37,8 @@ int main() {
     bvh::v2::ThreadPool thread_pool;
     bvh::v2::ParallelExecutor executor(thread_pool);
 
+    test_error();
+
     // Get triangle centers and bounding boxes (required for BVH builder)
     std::vector<BBox> bboxes(tris.size());
     std::vector<Vec3> centers(tris.size());
