@@ -52,7 +52,8 @@ int main() {
     config.quality = bvh::v2::DefaultBuilder<Node>::Quality::High;
     auto bvh = bvh::v2::DefaultBuilder<Node>::build(thread_pool, bboxes, centers, config);
 
-    for(auto &node : std::ranges::reverse_view {bvh.nodes}) {
+    const auto &cbvh = bvh;
+    for(auto &node : std::ranges::reverse_view {cbvh.nodes}) {
 
     }
 
